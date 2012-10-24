@@ -10,12 +10,13 @@ dated_dir = os.path.join('/tmp/sm',date_dir)
 if not os.path.isdir(dated_dir):
     os.makedirs(dated_dir)
 
-ars = {'10920':[100,100],'10921':[-100,-100]}
+# Read ARs 
+srs = {'10920':[100,100],'10921':[-100,-100]}
 
 aias = map(AIA, [94, 131, 171, 193, 211]) 
 #gongs = map(Gong, ['int','mag'])
 instruments = aias #+ gongs
 for inst in instruments:
-    inst.do_all(temp_dir,dated_dir,ars)
+    inst.do_all(temp_dir,dated_dir,srs)
                 
 

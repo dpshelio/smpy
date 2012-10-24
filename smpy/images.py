@@ -74,7 +74,11 @@ class Images():
         
     def sm_plot(self,sm_map,ars=None):
         """ Plot images as SM does """
-        map_fig = sm_map.plot(draw_grid=False, colorbar=False)
+        map_fig = plt.figure()
+        sm_map.plot()
+        sm_map.draw_limb()
+        sm_map.draw_grid(grid_spacing=10)#grid=False, colorbar=False)
+        ax=plt.gca()
         arr = np.ones(256).reshape(1,256)
         if ars is not None:
             for ar_number,pos in ars.items():
@@ -87,7 +91,7 @@ class Images():
                 offsetbox.add_artist(text_patch)
                 
                 ab = AnnotationBbox(offsetbox,(pos[0],pos[1]),xycoords='data',frameon=False)
-                map_fig.get_axes()[0].add_artist(ab)
+                ax.add_artist(ab)
 #                plt.annotate(ar_number,xy=(pos[0],pos[1]),color='white',weight=600,stretch='condensed')
 #                plt.annotate(ar_number,xy=(pos[0],pos[1]),weight=500)
             return map_fig
